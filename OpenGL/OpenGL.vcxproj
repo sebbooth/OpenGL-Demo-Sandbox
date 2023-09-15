@@ -19,10 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\IndexBuffer.cpp" />
+    <ClCompile Include="source\Renderer.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\Basic.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\IndexBuffer.h" />
+    <ClInclude Include="source\Renderer.h" />
+    <ClInclude Include="source\ShaderResTEMPORARY.h" />
+    <ClInclude Include="source\VertexBuffer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
