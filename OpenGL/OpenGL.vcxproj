@@ -33,7 +33,6 @@
     <ClInclude Include="source\Shader.h" />
     <ClInclude Include="source\IndexBuffer.h" />
     <ClInclude Include="source\Renderer.h" />
-    <ClInclude Include="source\ShaderResTEMPORARY.h" />
     <ClInclude Include="source\VertexBuffer.h" />
     <ClInclude Include="source\VertexArray.h" />
     <ClInclude Include="source\VertexBufferLayout.h" />

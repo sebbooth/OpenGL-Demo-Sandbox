@@ -47,9 +47,6 @@
     <ClInclude Include="source\IndexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\ShaderResTEMPORARY.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\VertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
