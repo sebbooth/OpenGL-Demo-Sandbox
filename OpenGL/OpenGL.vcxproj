@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Shader.cpp" />
     <ClCompile Include="source\IndexBuffer.cpp" />
     <ClCompile Include="source\Renderer.cpp" />
     <ClCompile Include="source\main.cpp" />
@@ -29,6 +30,7 @@
     <None Include="resources\shaders\Basic.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Shader.h" />
     <ClInclude Include="source\IndexBuffer.h" />
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\ShaderResTEMPORARY.h" />

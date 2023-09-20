@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <stdexcept>
 #include <GL/glew.h>
 #include "Renderer.h"
 
@@ -35,7 +36,7 @@ public:
 	template<typename T>
 	void Push(unsigned int count) 
 	{
-		ASSERT(false)
+		std::runtime_error(false);
 	}
 
 	template<>

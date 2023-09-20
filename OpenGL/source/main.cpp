@@ -9,8 +9,7 @@
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "VertexArray.h"
-
-#include "ShaderResTEMPORARY.h"
+#include "Shader.h"
 
 int main(void)
 {
@@ -76,18 +75,16 @@ int main(void)
 
         IndexBuffer ib(indices, 6);
 
-        ShaderProgramSource source = ParseShader("resources/shaders/Basic.glsl");
-        unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
-        GLCall(glUseProgram(shader));
+        Shader shader("resources/shaders/Basic.glsl");
+        shader.Bind();
+        shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
+       
 
-        GLCall(int location = glGetUniformLocation(shader, "u_Color"));
-        ASSERT(location != -1);
-        GLCall(glUniform4f(location, 0.2f, 0.3f, 0.8f, 1.0f));
-
-        GLCall(glBindVertexArray(0));
-        GLCall(glUseProgram(0));
-        GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
-        GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
+        va.UnBind();
+        shader.UnBind();
+        vb.UnBind();
+        ib.UnBind();
+    
 
 
         float r = 0.0f;
@@ -98,8 +95,9 @@ int main(void)
             /* Render here */
             GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
-            GLCall(glUseProgram(shader));
-            GLCall(glUniform4f(location, r, 0.3f, 0.8f, 1.0f));
+            shader.Bind();
+            shader.SetUniform4f("u_Color", r, 0.3f, 0.8f, 1.0f);
+           
 
             va.Bind();
             ib.Bind();
