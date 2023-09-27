@@ -23,8 +23,10 @@
     <ClCompile Include="source\IndexBuffer.cpp" />
     <ClCompile Include="source\Renderer.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\vendor\stb_image\stb_image.cpp" />
     <ClCompile Include="source\VertexBuffer.cpp" />
     <ClCompile Include="source\VertexArray.cpp" />
+    <ClCompile Include="source\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\Basic.glsl" />
@@ -33,9 +35,11 @@
     <ClInclude Include="source\Shader.h" />
     <ClInclude Include="source\IndexBuffer.h" />
     <ClInclude Include="source\Renderer.h" />
+    <ClInclude Include="source\vendor\stb_image\stb_image.h" />
     <ClInclude Include="source\VertexBuffer.h" />
     <ClInclude Include="source\VertexArray.h" />
     <ClInclude Include="source\VertexBufferLayout.h" />
+    <ClInclude Include="source\Texture.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
