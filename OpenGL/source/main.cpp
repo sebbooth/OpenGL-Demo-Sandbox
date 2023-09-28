@@ -13,6 +13,9 @@
 #include "Shader.h"
 #include "Texture.h"
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 int main(void)
 {
     GLFWwindow* window;
@@ -27,7 +30,7 @@ int main(void)
 
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(800, 600, "Hello World", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -78,13 +81,18 @@ int main(void)
 
         IndexBuffer ib(indices, 6);
 
+        glm::mat4 proj = glm::ortho(-1.0f, 1.0f, -0.75f, 0.75f, -1.0f, 1.0f);
+
         Shader shader("resources/shaders/Basic.glsl");
         shader.Bind();
         shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
-       
+        shader.SetUniformMat4f("u_MVP", proj);
+
         Texture texture("resources/textures/kitten.png");
         texture.Bind();
         shader.SetUniform1i("u_Texture", 0);
+
+
 
         va.UnBind();
         vb.UnBind();
