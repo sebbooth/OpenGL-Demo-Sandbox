@@ -1,6 +1,6 @@
 #include "TestClearColor.h"
-#include "Renderer.h"
 #include "imgui/imgui.h"
+#include "Renderer.h"
 
 namespace test {
 	TestClearColor::TestClearColor()

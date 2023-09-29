@@ -23,6 +23,7 @@
     <ClCompile Include="source\IndexBuffer.cpp" />
     <ClCompile Include="source\Renderer.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\tests\Test.cpp" />
     <ClCompile Include="source\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="source\vendor\imgui\imgui.cpp" />
     <ClCompile Include="source\vendor\imgui\imgui_demo.cpp" />
