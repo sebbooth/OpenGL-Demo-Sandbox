@@ -24,6 +24,10 @@
     <ClCompile Include="source\Renderer.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\vendor\glm\detail\glm.cpp" />
+    <ClCompile Include="source\vendor\imgui\imgui.cpp" />
+    <ClCompile Include="source\vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="source\vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="source\vendor\imgui\imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="source\vendor\stb_image\stb_image.cpp" />
     <ClCompile Include="source\VertexBuffer.cpp" />
     <ClCompile Include="source\VertexArray.cpp" />
@@ -454,6 +458,16 @@
     <ClInclude Include="source\vendor\glm\vec3.hpp" />
     <ClInclude Include="source\vendor\glm\vec4.hpp" />
     <ClInclude Include="source\vendor\glm\vector_relational.hpp" />
+    <ClInclude Include="source\vendor\imgui\imconfig.h" />
+    <ClInclude Include="source\vendor\imgui\imgui.h" />
+    <ClInclude Include="source\vendor\imgui\imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="source\vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="source\vendor\imgui\imstb_rectpack.h" />
+    <ClInclude Include="source\vendor\imgui\imstb_textedit.h" />
+    <ClInclude Include="source\vendor\imgui\imstb_truetype.h" />
+    <ClInclude Include="source\vendor\imgui\stb_rect_pack.h" />
+    <ClInclude Include="source\vendor\imgui\stb_textedit.h" />
+    <ClInclude Include="source\vendor\imgui\stb_truetype.h" />
     <ClInclude Include="source\vendor\stb_image\stb_image.h" />
     <ClInclude Include="source\VertexBuffer.h" />
     <ClInclude Include="source\VertexArray.h" />
