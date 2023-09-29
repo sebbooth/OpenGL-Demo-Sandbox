@@ -32,6 +32,7 @@
     <ClCompile Include="source\VertexBuffer.cpp" />
     <ClCompile Include="source\VertexArray.cpp" />
     <ClCompile Include="source\Texture.cpp" />
+    <ClCompile Include="source\tests\TestClearColor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\Basic.glsl" />
@@ -176,6 +177,7 @@
     <ClInclude Include="source\Shader.h" />
     <ClInclude Include="source\IndexBuffer.h" />
     <ClInclude Include="source\Renderer.h" />
+    <ClInclude Include="source\tests\Test.h" />
     <ClInclude Include="source\vendor\glm\common.hpp" />
     <ClInclude Include="source\vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="source\vendor\glm\detail\compute_vector_relational.hpp" />
@@ -473,6 +475,7 @@
     <ClInclude Include="source\VertexArray.h" />
     <ClInclude Include="source\VertexBufferLayout.h" />
     <ClInclude Include="source\Texture.h" />
+    <ClInclude Include="source\tests\TestClearColor.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -533,7 +536,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>Default</LanguageStandard>
-      <AdditionalIncludeDirectories>D:\CODE\Cpp\OpenGL\OpenGL\source\vendor;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>;$(SolutionDir)OpenGL\source;$(SolutionDir)OpenGL\source\vendor</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -549,7 +552,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>Default</LanguageStandard>
-      <AdditionalIncludeDirectories>D:\CODE\Cpp\OpenGL\OpenGL\source\vendor;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>;$(SolutionDir)OpenGL\source;$(SolutionDir)OpenGL\source\vendor</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -564,7 +567,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\CODE\Cpp\OpenGL\OpenGL\source\vendor;$(ProjectDir)include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)OpenGL\source;$(SolutionDir)OpenGL\source\vendor</AdditionalIncludeDirectories>
       <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
@@ -582,7 +585,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\CODE\Cpp\OpenGL\OpenGL\source\vendor;$(ProjectDir)include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)OpenGL\source;$(SolutionDir)OpenGL\source\vendor</AdditionalIncludeDirectories>
       <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
