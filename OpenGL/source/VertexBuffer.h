@@ -10,5 +10,6 @@ public:
 
 	void Bind() const;
 	void UnBind() const;
+	void SubData(const void* data, unsigned int size) const;
 };
 

@@ -25,6 +25,7 @@
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\tests\Test.cpp" />
     <ClCompile Include="source\tests\TestTexture2D.cpp" />
+    <ClCompile Include="source\tests\TestTexture2DBatch.cpp" />
     <ClCompile Include="source\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="source\vendor\imgui\imgui.cpp" />
     <ClCompile Include="source\vendor\imgui\imgui_demo.cpp" />
@@ -38,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\Basic.glsl" />
+    <None Include="resources\shaders\BasicBatch.glsl" />
     <None Include="source\vendor\glm\detail\func_common.inl" />
     <None Include="source\vendor\glm\detail\func_common_simd.inl" />
     <None Include="source\vendor\glm\detail\func_exponential.inl" />
@@ -181,6 +183,7 @@
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\tests\Test.h" />
     <ClInclude Include="source\tests\TestTexture2D.h" />
+    <ClInclude Include="source\tests\TestTexture2DBatch.h" />
     <ClInclude Include="source\vendor\glm\common.hpp" />
     <ClInclude Include="source\vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="source\vendor\glm\detail\compute_vector_relational.hpp" />

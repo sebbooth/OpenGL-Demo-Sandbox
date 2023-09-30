@@ -20,6 +20,7 @@
 
 #include "tests/TestClearColor.h"
 #include "tests/TestTexture2D.h"
+#include "tests/TestTexture2DBatch.h"
 
 
 int main(void)
@@ -71,6 +72,7 @@ int main(void)
         currentTest = testMenu;
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");    // Add tests
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");    // Add tests
+        testMenu->RegisterTest<test::TestTexture2DBatch>("2D Texture Batch");    // Add tests
 
         while (!glfwWindowShouldClose(window))
         {

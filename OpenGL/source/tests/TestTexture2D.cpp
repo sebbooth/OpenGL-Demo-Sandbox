@@ -38,7 +38,7 @@ namespace test {
 
 		m_Shader = std::make_unique<Shader>("resources/shaders/Basic.glsl");
 		m_Shader->Bind();
-		m_Shader->SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
+		m_Shader->SetUniform4f("u_Color", 0.0f, 0.0f, 1.0f, 1.0f);
 
 		m_Texture = std::make_unique<Texture>("resources/textures/kitten.png");
 		m_Shader->SetUniform1i("u_Texture", 0);
@@ -62,12 +62,13 @@ namespace test {
 		m_Texture->Bind();
 
 		m_View = glm::translate(glm::mat4(1.0f), m_ViewTranslation);
+		glm::vec4 color(0, 0, 0, 0);
 		{
 			glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationA);
 			glm::mat4 mvp = m_Proj * m_View * model;
 			m_Shader->Bind();
 			m_Shader->SetUniformMat4f("u_MVP", mvp);
-
+			m_Shader->SetUniform4f("u_Color", 0.0f, 0.0f, 1.0f, 1.0f);
 			renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
 		}
 		{
@@ -75,7 +76,7 @@ namespace test {
 			glm::mat4 mvp = m_Proj * m_View * model;
 			m_Shader->Bind();
 			m_Shader->SetUniformMat4f("u_MVP", mvp);
-
+			m_Shader->SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 0.0f);
 			renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
 		}
 	}

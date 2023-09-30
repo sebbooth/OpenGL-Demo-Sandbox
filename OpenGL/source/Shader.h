@@ -32,6 +32,8 @@ public:
 
 	void SetUniform1i(const std::string& name, int v0);
 
+	void SetUniform1iv(const std::string& name, int size, int* i);
+
 	void SetUniformMat4f(const std::string& name, const glm::mat4& matrix);
 
 
