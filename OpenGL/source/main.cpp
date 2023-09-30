@@ -19,6 +19,7 @@
 #include "imgui/imgui_impl_glfw_gl3.h"
 
 #include "tests/TestClearColor.h"
+#include "tests/TestTexture2D.h"
 
 
 int main(void)
@@ -41,9 +42,10 @@ int main(void)
     }
 
     glfwMakeContextCurrent(window);     // Make the window's context current 
-
     glfwSwapInterval(0);    //limit fps -- set 1 for vsync, set 0 for max
     ////////////////////////////////////////////////////////////////////////////////////
+
+
 
     ////////////////////////////    GLEW Initialization     ////////////////////////////
     GLenum err = glewInit();
@@ -58,20 +60,17 @@ int main(void)
 
 
     {
-        GLCall(glEnable(GL_BLEND));
-        GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-
         Renderer renderer;
-
-        ImGui::CreateContext();
+        
+        ImGui::CreateContext();     // ImGui Initialization
         ImGui_ImplGlfwGL3_Init(window, true);
         ImGui::StyleColorsDark();
 
-        test::Test* currentTest = nullptr;
+        test::Test* currentTest = nullptr;      // Test menu initialization
         test::TestMenu* testMenu = new test::TestMenu(currentTest);
         currentTest = testMenu;
-
-        testMenu->RegisterTest<test::TestClearColor>("Clear Color");
+        testMenu->RegisterTest<test::TestClearColor>("Clear Color");    // Add tests
+        testMenu->RegisterTest<test::TestTexture2D>("2D Texture");    // Add tests
 
         while (!glfwWindowShouldClose(window))
         {
@@ -102,15 +101,15 @@ int main(void)
 
             glfwPollEvents();
         }
-        delete currentTest;
         if (currentTest != testMenu)
             delete testMenu;
+        delete currentTest;
     }
 
     ImGui_ImplGlfwGL3_Shutdown();
     ImGui::DestroyContext();
     glfwTerminate();
     
-
+    _CrtDumpMemoryLeaks();
     return 0;
 }  
