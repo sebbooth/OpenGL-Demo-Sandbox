@@ -29,6 +29,7 @@ namespace test {
 		std::unique_ptr<Texture> m_Texture;
 
 		GLFWwindow* m_Window = glfwGetCurrentContext();
+		int m_Width, m_Height;
 
 		float m_RotationY, m_RotationX;
 		float m_Color[4] = { 0.0f, 0.0f, 0.0f, 0.0f };

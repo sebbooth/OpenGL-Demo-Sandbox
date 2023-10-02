@@ -6,6 +6,8 @@
 #include "VertexBufferLayout.h"
 #include "Texture.h"
 
+#include <GLFW/glfw3.h>
+
 #include <memory>
 
 namespace test {
@@ -28,6 +30,9 @@ namespace test {
 		std::unique_ptr<Shader> m_Shader;
 		std::unique_ptr<Texture> m_Texture1;
 		std::unique_ptr<Texture> m_Texture2;
+
+		GLFWwindow* m_Window = glfwGetCurrentContext();
+		int m_Width, m_Height;
 
 		float m_PositionA[2] = {   0.0f,   0.0f };
 		float m_PositionB[2] = { 100.0f, 100.0f };

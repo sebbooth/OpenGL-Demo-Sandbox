@@ -53,6 +53,7 @@ namespace test {
 		GLCall(glEnable(GL_DEPTH_TEST));
 		GLCall(glEnable(GL_BLEND));
 		GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+		glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
 
 		m_VAO = std::make_unique<VertexArray>();
 		m_VertexBuffer = std::make_unique<VertexBuffer>(positions, 12 * 5 * sizeof(float));
@@ -70,7 +71,7 @@ namespace test {
 		m_Texture = std::make_unique<Texture>("resources/textures/brick.JPG");
 		m_Shader->SetUniform1i("u_Texture", 0);
 
-		m_Proj = glm::perspective(glm::radians(45.0f), (float)(960 / 540), 0.1f, 100.0f);
+		m_Proj = glm::perspective(glm::radians(45.0f), (float)m_Width / (float)m_Height, 0.1f, 100.0f);
 	}
 
 	Basic3D::~Basic3D()
@@ -81,15 +82,17 @@ namespace test {
 	{
 	}
 
-	void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-	{
-		glViewport(0, 0, width, height);
-	}
-
-
 	void Basic3D::OnRender()
 	{
-		
+		//window resizing
+		int width, height;
+		glfwGetFramebufferSize(m_Window, &width, &height);
+		if (width != m_Width || height != m_Height) {
+			m_Width = width;
+			m_Height = height;
+			m_Proj = glm::perspective(glm::radians(45.0f), (float)m_Width / (float)m_Height, 0.1f, 100.0f);
+			GLCall(glViewport(0, 0, m_Width, m_Height));
+		}
 
 		GLCall(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
 		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
@@ -97,12 +100,6 @@ namespace test {
 		Renderer renderer;
 
 		m_Texture->Bind();
-
-		int width, height;
-		glfwGetFramebufferSize(m_Window, &width, &height);
-		m_Proj = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
-		GLCall(glViewport(0, 0, width, height));
-
 
 		m_View = glm::translate(glm::mat4(1.0f), m_ViewTranslation);
 		{

@@ -29,8 +29,7 @@ static std::array<Vertex, 4> CreateQuad(float x, float y, float textureID, float
 
 namespace test {
 	TestTexture2DBatch::TestTexture2DBatch()
-		:m_ViewTranslation(200,200,0),
-		m_Proj(glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -960.0f, 960.0f)),
+		:m_ViewTranslation(0,0,0),
 		m_View(glm::translate(glm::mat4(1.0f), m_ViewTranslation))
 	{
 
@@ -41,9 +40,12 @@ namespace test {
 		   6,7,4
 		};
 
+		glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
+		m_Proj = glm::ortho(0.0f, (float)m_Width, 0.0f, (float)m_Height, -1000.0f, 1000.0f);
+		GLCall(glViewport(0, 0, m_Width, m_Height));
 		GLCall(glEnable(GL_BLEND));
 		GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-
+	
 		m_VAO = std::make_unique<VertexArray>();
 		m_VertexBuffer = std::make_unique<VertexBuffer>(nullptr, 1000 * sizeof(Vertex));
 		VertexBufferLayout layout;
@@ -77,8 +79,18 @@ namespace test {
 
 	void TestTexture2DBatch::OnRender()
 	{
+		//window resizing
+		int width, height;
+		glfwGetFramebufferSize(m_Window, &width, &height);
+		if (width != m_Width || height != m_Height) {
+			m_Width = width;
+			m_Height = height;
+			m_Proj = glm::ortho(0.0f, (float)m_Width, 0.0f, (float)m_Height, -1000.0f, 1000.0f);
+			GLCall(glViewport(0, 0, m_Width, m_Height));
+		}
+
 		GLCall(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
-		GLCall(glClear(GL_COLOR_BUFFER_BIT));
+		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
 		Renderer renderer;
 
@@ -102,6 +114,7 @@ namespace test {
 			m_Shader->Bind();
 			m_Shader->SetUniformMat4f("u_MVP", mvp);
 			renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
+		
 		}
 	}
 
