@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\GLTFLoader.cpp" />
     <ClCompile Include="source\Shader.cpp" />
     <ClCompile Include="source\IndexBuffer.cpp" />
     <ClCompile Include="source\Renderer.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\tests\Basic3D.cpp" />
     <ClCompile Include="source\tests\Test.cpp" />
     <ClCompile Include="source\tests\TestTexture2D.cpp" />
     <ClCompile Include="source\tests\TestTexture2DBatch.cpp" />
@@ -178,9 +180,11 @@
     <None Include="source\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\GLTFLoader.h" />
     <ClInclude Include="source\Shader.h" />
     <ClInclude Include="source\IndexBuffer.h" />
     <ClInclude Include="source\Renderer.h" />
+    <ClInclude Include="source\tests\Basic3D.h" />
     <ClInclude Include="source\tests\Test.h" />
     <ClInclude Include="source\tests\TestTexture2D.h" />
     <ClInclude Include="source\tests\TestTexture2DBatch.h" />

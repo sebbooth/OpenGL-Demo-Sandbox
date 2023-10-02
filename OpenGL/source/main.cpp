@@ -21,6 +21,7 @@
 #include "tests/TestClearColor.h"
 #include "tests/TestTexture2D.h"
 #include "tests/TestTexture2DBatch.h"
+#include "tests/Basic3D.h"
 
 
 int main(void)
@@ -66,13 +67,14 @@ int main(void)
         ImGui::CreateContext();     // ImGui Initialization
         ImGui_ImplGlfwGL3_Init(window, true);
         ImGui::StyleColorsDark();
-
+        
         test::Test* currentTest = nullptr;      // Test menu initialization
         test::TestMenu* testMenu = new test::TestMenu(currentTest);
         currentTest = testMenu;
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");    // Add tests
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");    // Add tests
         testMenu->RegisterTest<test::TestTexture2DBatch>("2D Texture Batch");    // Add tests
+        testMenu->RegisterTest<test::Basic3D>("Basic 3D");    // Add tests
 
         while (!glfwWindowShouldClose(window))
         {

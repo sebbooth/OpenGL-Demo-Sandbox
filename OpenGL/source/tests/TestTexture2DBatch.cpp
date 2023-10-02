@@ -26,20 +26,6 @@ static std::array<Vertex, 4> CreateQuad(float x, float y, float textureID, float
 	return { v0,v1,v2,v3 };
 }
 
-/*
-float vertices[] = {
-	//   pos.x,  pos.y,  tex.x,tex.y,  tex.i,   color
-		-50.0f, -50.0f,   0.0f, 0.0f,   0.0f,   0.0f, 0.0f, 0.0f, 0.0f,
-		 50.0f, -50.0f,   1.0f, 0.0f,   0.0f,   0.0f, 0.0f, 0.0f, 0.0f,
-		 50.0f,  50.0f,   1.0f, 1.0f,   0.0f,   0.0f, 0.0f, 0.0f, 0.0f,
-		-50.0f,  50.0f,   0.0f, 1.0f,   0.0f,   0.0f, 0.0f, 0.0f, 0.0f,
-
-		 50.0f,  50.0f,   0.0f, 0.0f,   1.0f,   0.0f, 0.4f, 0.0f, 0.0f,
-		150.0f,  50.0f,   1.0f, 0.0f,   1.0f,   0.0f, 0.4f, 0.0f, 0.0f,
-		150.0f, 150.0f,   1.0f, 1.0f,   1.0f,   0.4f, 0.0f, 0.0f, 0.0f,
-		 50.0f, 150.0f,   0.0f, 1.0f,   1.0f,   0.4f, 0.0f, 0.0f, 0.0f,
-};
-*/
 
 namespace test {
 	TestTexture2DBatch::TestTexture2DBatch()

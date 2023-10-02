@@ -66,6 +66,12 @@
     <ClCompile Include="source\tests\TestTexture2DBatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\GLTFLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tests\Basic3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\Basic.glsl" />
@@ -1390,6 +1396,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\tests\TestTexture2DBatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GLTFLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tests\Basic3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
