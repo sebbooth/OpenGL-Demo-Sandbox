@@ -7,6 +7,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 #include <array>
+#include <algorithm>
 
 struct Vertex {
 	float Position[2];
@@ -15,9 +16,8 @@ struct Vertex {
 	float Color[4];
 };
 
-static std::array<Vertex, 4> CreateQuad(float x, float y, float textureID, float *color)
+static std::array<Vertex, 4> CreateQuad(float x, float y, float size, float textureID, float *color)
 {
-	float size = 100.0f;
 	Vertex v0 = { {x,      y     }, {0.0f, 0.0f}, textureID, { color[0], color[1], color[2], color[3] } };
 	Vertex v1 = { {x+size, y     }, {1.0f, 0.0f}, textureID, { color[0], color[1], color[2], color[3] } };
 	Vertex v2 = { {x+size, y+size}, {1.0f, 1.0f}, textureID, { color[0], color[1], color[2], color[3] } };
@@ -97,9 +97,9 @@ namespace test {
 		m_Texture1->Bind(0);
 		m_Texture2->Bind(1);
 		
-
-		auto q0 = CreateQuad(m_PositionA[0], m_PositionA[1], 0.0f, m_ColorA);
-		auto q1 = CreateQuad(m_PositionB[0], m_PositionB[1], 1.0f, m_ColorB);
+		float size = std::max({ m_Width / 8.0f, m_Height/5.0f });
+		auto q0 = CreateQuad(m_PositionA[0], m_PositionA[1], size, 0.0f, m_ColorA);
+		auto q1 = CreateQuad(m_PositionB[0], m_PositionB[1], size, 1.0f, m_ColorB);
 
 		Vertex vertices[8];
 		memcpy(vertices, q0.data(), q0.size() * sizeof(Vertex));

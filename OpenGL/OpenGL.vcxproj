@@ -480,6 +480,7 @@
     <ClInclude Include="source\vendor\imgui\stb_rect_pack.h" />
     <ClInclude Include="source\vendor\imgui\stb_textedit.h" />
     <ClInclude Include="source\vendor\imgui\stb_truetype.h" />
+    <ClInclude Include="source\vendor\json\json.hpp" />
     <ClInclude Include="source\vendor\stb_image\stb_image.h" />
     <ClInclude Include="source\VertexBuffer.h" />
     <ClInclude Include="source\VertexArray.h" />

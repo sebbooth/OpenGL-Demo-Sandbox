@@ -9,7 +9,8 @@
 namespace test {
 	Basic3D::Basic3D()
 		: m_Model(glm::mat4(1.0f)), m_View(glm::mat4(1.0f)), m_Proj(glm::mat4(1.0f)),
-		m_ViewTranslation(glm::vec3(0,0,-10))
+		m_ViewTranslation(glm::vec3(0,0,-10)), 
+		m_ModelTranslationA(glm::vec3(-2, 0, 0)), m_ModelTranslationB(glm::vec3(2, 0, 0))
 	{
 		float positions[] = {
 			//  x,     y,     z,   tex.x, tex.y,
@@ -105,7 +106,18 @@ namespace test {
 		{
 			m_Model = glm::rotate(glm::mat4(1.0f), glm::radians(m_RotationY), glm::vec3(0.0f, 1.0f, 0.0f));
 			m_Model = glm::rotate(m_Model, glm::radians(m_RotationX), glm::vec3(1.0f, 0.0f, 0.0f));
-			m_Model = glm::translate(m_Model, m_ModelTranslation);
+			m_Model = glm::translate(m_Model, m_ModelTranslationA);
+			glm::mat4 mvp = m_Proj * m_View * m_Model;
+			m_Shader->Bind();
+			m_Shader->SetUniformMat4f("u_MVP", mvp);
+			m_Shader->SetUniform4f("u_Color", m_Color[0], m_Color[1], m_Color[2], m_Color[3]);
+			renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
+		}
+
+		{
+			m_Model = glm::rotate(glm::mat4(1.0f), glm::radians(m_RotationY), glm::vec3(0.0f, 1.0f, 0.0f));
+			m_Model = glm::rotate(m_Model, glm::radians(m_RotationX), glm::vec3(1.0f, 0.0f, 0.0f));
+			m_Model = glm::translate(m_Model, m_ModelTranslationB);
 			glm::mat4 mvp = m_Proj * m_View * m_Model;
 			m_Shader->Bind();
 			m_Shader->SetUniformMat4f("u_MVP", mvp);
@@ -118,7 +130,8 @@ namespace test {
 	{
 
 		ImGui::SliderFloat3("View", &m_ViewTranslation.x, -10.0f, 10.0f);
-		ImGui::SliderFloat3("Model", &m_ModelTranslation.x, -10.0f, 10.0f);
+		ImGui::SliderFloat3("Model A", &m_ModelTranslationA.x, -10.0f, 10.0f);
+		ImGui::SliderFloat3("Model B", &m_ModelTranslationB.x, -10.0f, 10.0f);
 		ImGui::SliderFloat("Rotate abt Y", &m_RotationY, -200.0f, 200.0f);
 		ImGui::SliderFloat("Rotate abt X", &m_RotationX, -200.0f, 200.0f);
 		ImGui::ColorEdit4("Color B", m_Color);

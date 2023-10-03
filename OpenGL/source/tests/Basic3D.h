@@ -35,7 +35,7 @@ namespace test {
 		float m_Color[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 
 		glm::mat4 m_Model, m_View, m_Proj;
-		glm::vec3 m_ViewTranslation, m_ModelTranslation;
+		glm::vec3 m_ViewTranslation, m_ModelTranslationA, m_ModelTranslationB;
 	};
 }
 

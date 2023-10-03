@@ -12,6 +12,7 @@
 #include "VertexArray.h"
 #include "Shader.h"
 #include "Texture.h"
+#include "GLTFLoader.h"
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -59,6 +60,8 @@ int main(void)
     fprintf(stdout, "Status: Using GL %s\n", glGetString(GL_VERSION));
     ////////////////////////////////////////////////////////////////////////////////////
 
+
+    GLTFLoader test("resources/models/cube.gltf");
 
 
     {
