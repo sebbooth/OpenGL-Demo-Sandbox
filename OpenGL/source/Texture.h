@@ -11,6 +11,8 @@ private:
 	int m_Width, m_Height, m_BPP;
 
 public:
+	const char* m_Type;
+
 	Texture(const std::string& path);
 	~Texture();
 
@@ -19,5 +21,8 @@ public:
 
 	inline int GetWidth() const { return m_Width; }
 	inline int GetHeight() const { return m_Height; }
+	
+	void assignType(const char* texType);
+	void texUnit(Shader& shader, const char* uniform, GLuint unit);
 };
 

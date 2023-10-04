@@ -39,3 +39,17 @@ void Texture::UnBind() const
 {
 	GLCall(glBindTexture(GL_TEXTURE_2D, 0));
 }
+
+void Texture::assignType(const char* texType)
+{
+	m_Type = texType;
+}
+
+void Texture::texUnit(Shader& shader, const char* uniform, GLuint unit)
+{
+	// Gets the location of the uniform
+	// Shader needs to be activated before changing the value of a uniform
+	shader.Bind();
+	// Sets the value of the uniform
+	shader.SetUniform1i(uniform, unit);
+}

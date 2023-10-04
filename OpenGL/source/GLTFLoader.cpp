@@ -23,14 +23,14 @@ GLTFLoader::GLTFLoader(const std::string& filePath) :
 	m_FilePath(filePath)
 {
 	std::string text = readFileContents(m_FilePath);
-    
-    m_JSON = json::parse(text);
 
-    std::string bytesText;
-    std::string uri = m_JSON["buffers"][0]["uri"];
+	m_JSON = json::parse(text);
 
-    std::string fileDirectory = m_FilePath.substr(0, m_FilePath.find_last_of('/') + 1);
-    bytesText = readFileContents((fileDirectory + uri).c_str());
+	std::string bytesText;
+	std::string uri = m_JSON["buffers"][0]["uri"];
+
+	std::string fileDirectory = m_FilePath.substr(0, m_FilePath.find_last_of('/') + 1);
+	bytesText = readFileContents((fileDirectory + uri).c_str());
 
 	m_Data = std::vector<unsigned char>(bytesText.begin(), bytesText.end());
 
@@ -38,7 +38,30 @@ GLTFLoader::GLTFLoader(const std::string& filePath) :
 }
 
 
+void GLTFLoader::loadMesh(unsigned int indMesh)
+{
+	unsigned int posAccInd = m_JSON["meshes"][indMesh]["primitives"][0]["attributes"]["POSITION"];
+	unsigned int normalAccInd = m_JSON["meshes"][indMesh]["primitives"][0]["attributes"]["NORMAL"];
+	unsigned int texAccInd = m_JSON["meshes"][indMesh]["primitives"][0]["attributes"]["TEXCOORD_0"];
+	unsigned int indAccInd = m_JSON["meshes"][indMesh]["primitives"][0]["indices"];
 
+	// Use accessor indices to get all vertices components
+	std::vector<float> posVec = getFloats(m_JSON["accessors"][posAccInd]);
+	//std::vector<glm::vec3> positions = groupFloatsVec3(posVec);
+	std::vector<float> normalVec = getFloats(m_JSON["accessors"][normalAccInd]);
+	//std::vector<glm::vec3> normals = groupFloatsVec3(normalVec);
+	std::vector<float> texVec = getFloats(m_JSON["accessors"][texAccInd]);
+	//std::vector<glm::vec2> texUVs = groupFloatsVec2(texVec);
+
+	// Combine all the vertex components and also get the indices and textures
+	//std::vector<Vertex> vertices = assembleVertices(positions, normals, texUVs);
+	m_Indices = getIndices(m_JSON["accessors"][indAccInd]);
+	m_Textures = getTextures();
+
+	// Combine the vertices, indices, and textures into a mesh
+	//meshes.push_back(Mesh(vertices, indices, textures));
+
+}
 
 
 void GLTFLoader::traverseNode(unsigned int nextNode, glm::mat4 matrix)
@@ -120,7 +143,6 @@ void GLTFLoader::traverseNode(unsigned int nextNode, glm::mat4 matrix)
 			traverseNode(node["children"][i], matNextNode);
 	}
 }
-
 
 
 std::vector<float> GLTFLoader::getFloats(json accessor)
@@ -243,6 +265,7 @@ std::vector<Texture> GLTFLoader::getTextures()
 			if (texPath.find("baseColor") != std::string::npos)
 			{
 				Texture diffuse = Texture((fileDirectory + texPath).c_str());
+				diffuse.assignType("diffuse");
 				textures.push_back(diffuse);
 				m_LoadedTex.push_back(diffuse);
 				m_LoadedTexNames.push_back(texPath);
@@ -251,6 +274,7 @@ std::vector<Texture> GLTFLoader::getTextures()
 			else if (texPath.find("metallicRoughness") != std::string::npos)
 			{
 				Texture specular = Texture((fileDirectory + texPath).c_str());
+				specular.assignType("specular");
 				textures.push_back(specular);
 				m_LoadedTex.push_back(specular);
 				m_LoadedTexNames.push_back(texPath);
@@ -260,3 +284,5 @@ std::vector<Texture> GLTFLoader::getTextures()
 
 	return textures;
 }
+
+

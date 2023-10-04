@@ -24,6 +24,8 @@ class GLTFLoader
 public:
 	GLTFLoader(const std::string& filePath);
 
+	void loadMesh(unsigned int indMesh);
+
 	void traverseNode(unsigned int nextNode, glm::mat4 matrix = glm::mat4(1.0f));
 
 
@@ -50,5 +52,8 @@ private:
 	std::vector<glm::vec3> m_ScalesMeshes;
 	std::vector<glm::mat4> m_MatricesMeshes;
 
+	//
+	std::vector<GLuint> m_Indices;
+	std::vector<Texture> m_Textures;
 };
 
