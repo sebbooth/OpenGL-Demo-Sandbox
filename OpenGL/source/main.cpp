@@ -12,7 +12,6 @@
 #include "VertexArray.h"
 #include "Shader.h"
 #include "Texture.h"
-#include "GLTFLoader.h"
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -23,6 +22,7 @@
 #include "tests/TestTexture2D.h"
 #include "tests/TestTexture2DBatch.h"
 #include "tests/Basic3D.h"
+#include "tests/ModelLoading.h"
 
 
 int main(void)
@@ -61,9 +61,6 @@ int main(void)
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    GLTFLoader test("resources/models/cube.gltf");
-
-
     {
         Renderer renderer;
         
@@ -78,6 +75,7 @@ int main(void)
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");    // Add tests
         testMenu->RegisterTest<test::TestTexture2DBatch>("2D Texture Batch");    // Add tests
         testMenu->RegisterTest<test::Basic3D>("Basic 3D");    // Add tests
+        testMenu->RegisterTest<test::ModelLoading>("Model Loading");    // Add tests
 
         while (!glfwWindowShouldClose(window))
         {

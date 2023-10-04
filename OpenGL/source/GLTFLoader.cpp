@@ -54,15 +54,52 @@ void GLTFLoader::loadMesh(unsigned int indMesh)
 	//std::vector<glm::vec2> texUVs = groupFloatsVec2(texVec);
 
 	// Combine all the vertex components and also get the indices and textures
-	//std::vector<Vertex> vertices = assembleVertices(positions, normals, texUVs);
+	std::vector<float> vertices = assembleVertices(posVec, normalVec, texVec);
 	m_Indices = getIndices(m_JSON["accessors"][indAccInd]);
 	m_Textures = getTextures();
 
+	VertexBufferLayout layout;
+	layout.Push<float>(3);
+	layout.Push<float>(3);
+	layout.Push<float>(2);
 	// Combine the vertices, indices, and textures into a mesh
-	//meshes.push_back(Mesh(vertices, indices, textures));
+	m_Meshes.push_back(Mesh(vertices, layout, m_Indices, m_Textures));
 
 }
 
+
+void GLTFLoader::Draw(Shader& shader, glm::mat4 proj, glm::mat4 view)
+{
+	// Go over all meshes and draw each one
+	for (unsigned int i = 0; i < m_Meshes.size(); i++)
+	{
+		m_Meshes[i].Mesh::Draw(shader, proj, view, m_MatricesMeshes[i]);
+	}
+}
+
+std::vector<float> GLTFLoader::assembleVertices
+(
+	std::vector<float> posVec,
+	std::vector<float> normalVec,
+	std::vector<float> texVec
+)
+{
+	std::vector<float> vertices;
+	for (int i = 0; i < posVec.size()/3; i++)
+	{
+		vertices.push_back(posVec[i]);
+		vertices.push_back(posVec[i+1]);
+		vertices.push_back(posVec[i+2]);
+
+		vertices.push_back(normalVec[i]);
+		vertices.push_back(normalVec[i+1]);
+		vertices.push_back(normalVec[i+2]);
+
+		vertices.push_back(texVec[i+1]);
+		vertices.push_back(texVec[i+2]);
+	}
+	return vertices;
+}
 
 void GLTFLoader::traverseNode(unsigned int nextNode, glm::mat4 matrix)
 {
@@ -134,6 +171,7 @@ void GLTFLoader::traverseNode(unsigned int nextNode, glm::mat4 matrix)
 		m_MatricesMeshes.push_back(matNextNode);
 
 		m_MeshesInd.push_back(node["mesh"]);
+		loadMesh(node["mesh"]);
 	}
 
 	// Check if the node has children, and if it does, apply this function to them with the matNextNode

@@ -28,6 +28,7 @@ void Mesh::Draw
 (
 	Shader& shader,
 	glm::mat4 proj,
+	glm::mat4 view,
 	glm::mat4 model,
 	glm::vec3 translation,
 	glm::quat rotation,
@@ -67,7 +68,8 @@ void Mesh::Draw
 	rot = glm::mat4_cast(rotation);
 	sca = glm::scale(sca, scale);
 
-	glm::mat4 mvp = proj * sca * rot * trans * model;
+	//glm::mat4 mvp = proj * view * sca * rot * trans * model;
+	glm::mat4 mvp = proj * view * model;
 
 
 	shader.SetUniformMat4f("u_MVP", mvp);

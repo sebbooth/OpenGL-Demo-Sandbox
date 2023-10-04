@@ -29,11 +29,13 @@ public:
 	// Initializes the mesh
 	Mesh(std::vector<float>& vertices, VertexBufferLayout layout, std::vector<GLuint>& indices, std::vector<Texture>& textures);
 
+
 	// Draws the mesh
 	void Draw
 	(
 		Shader& shader,
 		glm::mat4 proj = glm::perspective(glm::radians(45.0f), 400.0f/300.0f, 0.1f, 100.0f),
+		glm::mat4 view = glm::mat4(1.0f),
 		glm::mat4 model = glm::mat4(1.0f),
 		glm::vec3 translation = glm::vec3(0.0f, 0.0f, 0.0f),
 		glm::quat rotation = glm::quat(1.0f, 0.0f, 0.0f, 0.0f),
