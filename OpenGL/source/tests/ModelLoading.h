@@ -5,7 +5,7 @@
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
 #include "Texture.h"
-#include "GLTFLoader.h"
+#include "OBJLoader.h"
 
 #include <GLFW/glfw3.h>
 
@@ -23,7 +23,7 @@ namespace test {
 		void OnRender() override;
 		void OnImGuiRender() override;
 	private:
-		std::unique_ptr < GLTFLoader> m_Model;
+		std::unique_ptr <OBJLoader> m_Model;
 
 		std::unique_ptr<VertexArray> m_VAO;
 		std::unique_ptr<IndexBuffer> m_IndexBuffer;

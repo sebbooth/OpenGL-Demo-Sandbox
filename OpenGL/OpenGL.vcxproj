@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\OBJLoader.cpp" />
     <ClCompile Include="source\GLTFLoader.cpp" />
     <ClCompile Include="source\Mesh.cpp" />
     <ClCompile Include="source\Shader.cpp" />
@@ -182,6 +183,7 @@
     <None Include="source\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\OBJLoader.h" />
     <ClInclude Include="source\GLTFLoader.h" />
     <ClInclude Include="source\Mesh.h" />
     <ClInclude Include="source\Shader.h" />

@@ -23,7 +23,7 @@ namespace test {
 		m_Shader->Bind();
 		m_Shader->SetUniform4f("u_Color", m_Color[0], m_Color[1], m_Color[2], m_Color[3]);
 
-		m_Model = std::make_unique<GLTFLoader>("resources/models/cube.gltf");
+		m_Model = std::make_unique<OBJLoader>("resources/models/obj/testCube/testCube.obj");
 
 	}
 

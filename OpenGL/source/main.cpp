@@ -13,6 +13,8 @@
 #include "Shader.h"
 #include "Texture.h"
 
+#include "OBJLoader.h"
+
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "imgui/imgui.h"
@@ -23,6 +25,7 @@
 #include "tests/TestTexture2DBatch.h"
 #include "tests/Basic3D.h"
 #include "tests/ModelLoading.h"
+
 
 
 int main(void)
@@ -76,6 +79,12 @@ int main(void)
         testMenu->RegisterTest<test::TestTexture2DBatch>("2D Texture Batch");    // Add tests
         testMenu->RegisterTest<test::Basic3D>("Basic 3D");    // Add tests
         testMenu->RegisterTest<test::ModelLoading>("Model Loading");    // Add tests
+
+
+        OBJLoader testCube("resources/models/obj/testCube/testCube.obj");
+        OBJLoader testObj("resources/models/obj/testObj/untitled.obj");
+
+
 
         while (!glfwWindowShouldClose(window))
         {
