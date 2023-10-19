@@ -81,8 +81,6 @@ int main(void)
         testMenu->RegisterTest<test::ModelLoading>("Model Loading");    // Add tests
 
 
-        OBJLoader testCube("resources/models/obj/testCube/testCube.obj");
-        OBJLoader testObj("resources/models/obj/testObj/untitled.obj");
 
 
 

@@ -22,7 +22,6 @@ class OBJLoader
 public:
 	OBJLoader(const std::string& filePath);
 
-
 	void Draw
 	(
 		Shader& shader,
@@ -32,16 +31,18 @@ public:
 
 	void addTexture(const std::string& filePath, const char type);
 
-private:
-	std::string m_FilePath;
+
 
 	std::vector<OBJVertex> m_Vertices;
+	std::vector<unsigned int> m_Indices;
+
+private:
+	std::string m_FilePath;
 
 	// Prevents textures from being loaded twice
 	std::vector<std::string> m_LoadedTexNames;
 
 	std::vector<Texture> m_Textures;
 
-	std::vector<GLuint> m_Indices;
 };
 
