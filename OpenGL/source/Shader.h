@@ -36,6 +36,9 @@ public:
 
 	void SetUniformMat4f(const std::string& name, const glm::mat4& matrix);
 
+	void SetUniformVec3(const std::string& name, const glm::vec3& vec);
+
+
 
 
 private:

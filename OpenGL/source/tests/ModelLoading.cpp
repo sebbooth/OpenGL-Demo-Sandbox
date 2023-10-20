@@ -80,7 +80,16 @@ namespace test {
 
 		m_Shader->Bind();
 		m_Shader->SetUniformMat4f("u_MVP", mvp);
+
+		m_Shader->SetUniformVec3("u_ViewPos", m_ViewTranslation);
+		m_Shader->SetUniformVec3("u_LightPos", m_LightPos);
+
 		m_Shader->SetUniform4f("u_Color", m_Color[0], m_Color[1], m_Color[2], m_Color[3]);
+		m_Shader->SetUniform4f("u_LightColor", m_LightColor[0], m_LightColor[1], m_LightColor[2], m_LightColor[3]);
+
+
+		m_Shader->SetUniform1f("u_AmbientIntensity", m_AmbientIntensity);
+		m_Shader->SetUniform1f("u_SpecularIntensity", m_SpecularIntensity);
 
 		renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
 
@@ -93,7 +102,17 @@ namespace test {
 		ImGui::SliderFloat3("Model A", &m_ModelTranslation.x, -10.0f, 10.0f);
 		ImGui::SliderFloat("Rotate abt Y", &m_RotationY, -200.0f, 200.0f);
 		ImGui::SliderFloat("Rotate abt X", &m_RotationX, -200.0f, 200.0f);
-		ImGui::ColorEdit4("Color B", m_Color);
+
+
+		ImGui::ColorEdit4("Obj Color", m_Color);
+		ImGui::ColorEdit4("Light Color", m_LightColor);
+		ImGui::SliderFloat3("Light Pos", &m_LightPos.x, -10.0f, 10.0f);
+
+
+
+		ImGui::SliderFloat("Ambient Light", &m_AmbientIntensity, 0.0f, 3.0f);
+		ImGui::SliderFloat("Specular Light", &m_SpecularIntensity, 0.001f, 10.0f);
+
 
 	}
 }

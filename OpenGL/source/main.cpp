@@ -13,8 +13,6 @@
 #include "Shader.h"
 #include "Texture.h"
 
-#include "OBJLoader.h"
-
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "imgui/imgui.h"
