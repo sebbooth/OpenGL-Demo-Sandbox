@@ -45,6 +45,7 @@
   <ItemGroup>
     <None Include="resources\shaders\Basic.glsl" />
     <None Include="resources\shaders\BasicBatch.glsl" />
+    <None Include="resources\shaders\BasicModel.glsl" />
     <None Include="source\vendor\glm\detail\func_common.inl" />
     <None Include="source\vendor\glm\detail\func_common_simd.inl" />
     <None Include="source\vendor\glm\detail\func_exponential.inl" />

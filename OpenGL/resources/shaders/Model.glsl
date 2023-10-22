@@ -42,11 +42,10 @@ uniform vec4 u_LightColor;
 uniform vec3 u_ViewPos;
 uniform float u_AmbientIntensity;
 uniform float u_SpecularIntensity;
-//uniform sampler2D u_Texture;
+uniform sampler2D u_Texture;
 
 void main()
 {
-    //vec4 texColor = texture(u_Texture, v_TexCoord);
     //color = texColor + u_Color;
     //color = vec4(normal.r, normal.g, normal.b, 0.0);
     //color = color + u_Color;
@@ -70,6 +69,11 @@ void main()
     
     //phong
     color = (ambient + diffuse) + specular;
-    color = vec4(color.r, color.g, color.b, 0);
-    color = u_Color + color;
+    color = vec4(color.r, color.g, color.b, 1);
+
+
+    vec4 texColor = texture(u_Texture, v_TexCoord);
+    color = texColor;
+
+
 };

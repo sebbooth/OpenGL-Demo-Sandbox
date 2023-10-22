@@ -493,6 +493,7 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="resources\shaders\BasicBatch.glsl" />
+    <None Include="resources\shaders\BasicModel.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Renderer.h">

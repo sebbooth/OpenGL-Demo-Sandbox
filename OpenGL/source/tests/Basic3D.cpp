@@ -70,6 +70,7 @@ namespace test {
 		m_Shader->SetUniform4f("u_Color", m_Color[0], m_Color[1], m_Color[2], m_Color[3]);
 
 		m_Texture = std::make_unique<Texture>("resources/textures/brick.JPG");
+
 		m_Shader->SetUniform1i("u_Texture", 0);
 
 		m_Proj = glm::perspective(glm::radians(45.0f), (float)m_Width / (float)m_Height, 0.1f, 100.0f);
