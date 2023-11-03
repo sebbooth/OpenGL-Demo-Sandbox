@@ -12,17 +12,17 @@ out vec3 v_ViewDir;
 
 uniform mat4 u_MVP;
 uniform mat4 u_Mod;
-uniform vec3 u_LightPos;
 uniform vec3 u_ViewPos;
+uniform vec3 u_LightPos;
 
 void main()
 {
     gl_Position = u_MVP * position;
     v_TexCoord = texCoord;
-    v_Normal = u_Mod*normal;
+    v_Normal = normalize(u_Mod*normal);
     vec4 w_Position = u_Mod * position;
-    v_LightDir = u_LightPos - vec3(w_Position);
-    v_ViewDir = u_ViewPos - vec3(w_Position);
+    v_LightDir = normalize(u_LightPos - vec3(w_Position));
+    v_ViewDir = normalize(vec3(w_Position) - u_ViewPos);
 };
 
 
@@ -37,36 +37,38 @@ in vec4 v_Normal;
 in vec3 v_LightDir;
 in vec3 v_ViewDir;
 
-uniform vec4 u_Color;
-uniform vec3 u_LightColor;
+uniform vec4 u_ModelCol;
 uniform vec3 u_ViewPos;
-uniform mat4 u_Mod;
-
-uniform float u_SpecularIntensity;
-
-uniform float u_AmbientIntensity;
 uniform sampler2D u_Texture;
+
+uniform float u_AmbientCoeff;
+uniform vec3 u_AmbientCol;
+
+uniform float u_DiffuseCoeff;
+uniform vec3 u_DiffuseCol;
+
+uniform float u_SpecularCoeff;
+uniform vec3 u_SpecularCol;
+
 
 void main()
 {
     //texture color
     vec4 texColor = texture(u_Texture, v_TexCoord);
 
-    //ambient light
-    vec3 ambient = u_LightColor * u_AmbientIntensity;
+    //ambients
+    vec3 ambient = u_AmbientCoeff * u_AmbientCol;
 
-    // Diffuse
-    float diff = max(dot(normalize(vec3(v_Normal)), normalize(v_LightDir)), 0.0);
-    vec3 diffuse = diff * u_LightColor;
+    //diffuse
+    float dotLN = clamp(dot(v_LightDir, vec3(v_Normal)), 0., 1.);
+    vec3 diffuse = u_DiffuseCoeff * dotLN * u_DiffuseCol;
+       
+    //specular
+    float dotRV = clamp(dot(reflect(v_LightDir, vec3(v_Normal)), -v_ViewDir), 0., 1.);
+    float alpha = 1.;
+    vec3 specular = u_SpecularCoeff * pow(dotRV, alpha) * u_SpecularCol;
 
+    vec4 light = vec4(ambient + diffuse + specular, 1);
 
-    // Specular
-    vec3 reflectDir = reflect(v_LightDir, normalize(vec3(v_Normal)));
-    float spec = pow(max(dot(v_ViewDir, reflectDir), 0.0), u_SpecularIntensity);
-    vec3 specular = spec * u_LightColor * 0.001;
-
-
-    vec4 lighting = vec4(ambient + diffuse + specular, 1);
-
-    color = texColor * u_Color * lighting;
+    color = texColor * light;
 };

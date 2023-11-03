@@ -13,11 +13,11 @@
 
 namespace test {
 	
-	class ModelLoading : public Test
+	class ModelInstancing : public Test
 	{
 	public:
-		ModelLoading();
-		~ModelLoading();
+		ModelInstancing();
+		~ModelInstancing();
 
 		void OnUpdate(float deltaTime) override;
 		void OnRender() override;
@@ -34,20 +34,16 @@ namespace test {
 		GLFWwindow* m_Window = glfwGetCurrentContext();
 		int m_Width, m_Height;
 
-		float m_ModelCol[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		float m_Color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		float m_LightColor[4] = { 1.0f, 1.0f, 1.0f};
 
 		glm::vec3 m_LightPos = glm::vec3(40, 1, 1);
 
+
+
 		float m_RotationY, m_RotationX;
-
-		float m_AmbientCoeff = 0.5f;
-		float m_AmbientCol[3] = { 1.0f, 1.0f, 1.0f };
-
-		float m_DiffuseCoeff = 0.5f;
-		float m_DiffuseCol[3] = { 1.0f, 1.0f, 1.0f };
-
-		float m_SpecularCoeff = 0.5f;
-		float m_SpecularCol[3] = { 1.0f, 1.0f, 1.0f };
+		float m_AmbientIntensity = 0.5f;
+		float m_SpecularIntensity = 0.5f;
 
 		glm::mat4 m_Proj, m_View, m_ModelMat;
 		glm::vec3 m_ViewTranslation, m_ModelTranslation;

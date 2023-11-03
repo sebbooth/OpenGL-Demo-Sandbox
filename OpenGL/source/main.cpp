@@ -23,6 +23,7 @@
 #include "tests/TestTexture2DBatch.h"
 #include "tests/Basic3D.h"
 #include "tests/ModelLoading.h"
+#include "tests/ModelInstancing.h"
 
 
 
@@ -77,6 +78,7 @@ int main(void)
         testMenu->RegisterTest<test::TestTexture2DBatch>("2D Texture Batch");    // Add tests
         testMenu->RegisterTest<test::Basic3D>("Basic 3D");    // Add tests
         testMenu->RegisterTest<test::ModelLoading>("Model Loading");    // Add tests
+        testMenu->RegisterTest<test::ModelInstancing>("Model Instancing");    // Add tests
 
 
 

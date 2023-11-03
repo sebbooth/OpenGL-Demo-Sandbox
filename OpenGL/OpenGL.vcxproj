@@ -27,6 +27,7 @@
     <ClCompile Include="source\Renderer.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\tests\Basic3D.cpp" />
+    <ClCompile Include="source\tests\ModelInstancing.cpp" />
     <ClCompile Include="source\tests\ModelLoading.cpp" />
     <ClCompile Include="source\tests\Test.cpp" />
     <ClCompile Include="source\tests\TestTexture2D.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="source\IndexBuffer.h" />
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\tests\Basic3D.h" />
+    <ClInclude Include="source\tests\ModelInstancing.h" />
     <ClInclude Include="source\tests\ModelLoading.h" />
     <ClInclude Include="source\tests\Test.h" />
     <ClInclude Include="source\tests\TestTexture2D.h" />
