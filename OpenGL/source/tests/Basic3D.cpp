@@ -86,20 +86,11 @@ namespace test {
 
 	void Basic3D::OnRender()
 	{
-		//window resizing
-		int width, height;
-		glfwGetFramebufferSize(m_Window, &width, &height);
-		if (width != m_Width || height != m_Height) {
-			m_Width = width;
-			m_Height = height;
-			m_Proj = glm::perspective(glm::radians(45.0f), (float)m_Width / (float)m_Height, 0.1f, 100.0f);
-			GLCall(glViewport(0, 0, m_Width, m_Height));
-		}
-
-		GLCall(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
-		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
 		Renderer renderer;
+
+		renderer.updateProj(m_Window, m_Proj, m_Width, m_Height, 45.0f, 0.1f, 1000.0f);
+		renderer.Clear();
 
 		m_Texture->Bind();
 

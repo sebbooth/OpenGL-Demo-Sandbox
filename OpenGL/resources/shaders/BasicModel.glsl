@@ -1,12 +1,12 @@
 #shader vertex
 #version 330 core
 
-layout(location = 0) in vec4 position;
-layout(location = 1) in vec4 normal;
+layout(location = 0) in vec3 position;
+layout(location = 1) in vec3 normal;
 layout(location = 2) in vec2 texCoord;
 
 out vec2 v_TexCoord;
-out vec4 v_Normal;
+out vec3 v_Normal;
 out vec3 v_LightDir;
 out vec3 v_ViewDir;
 
@@ -17,12 +17,12 @@ uniform vec3 u_LightPos;
 
 void main()
 {
-    gl_Position = u_MVP * position;
+    gl_Position = u_MVP * vec4(position, 1);
     v_TexCoord = texCoord;
-    v_Normal = normalize(u_Mod*normal);
-    vec4 w_Position = u_Mod * position;
-    v_LightDir = normalize(u_LightPos - vec3(w_Position));
-    v_ViewDir = normalize(vec3(w_Position) - u_ViewPos);
+    v_Normal = normalize(u_Mod * vec4(normal, 0)).xyz;
+    vec3 w_Position = (u_Mod * vec4(position, 0)).xyz;
+    v_LightDir = normalize(w_Position - u_LightPos);
+    v_ViewDir = normalize(w_Position - u_ViewPos);
 };
 
 
@@ -33,7 +33,7 @@ void main()
 layout(location = 0) out vec4 color;
 
 in vec2 v_TexCoord;
-in vec4 v_Normal;
+in vec3 v_Normal;
 in vec3 v_LightDir;
 in vec3 v_ViewDir;
 
@@ -60,11 +60,11 @@ void main()
     vec3 ambient = u_AmbientCoeff * u_AmbientCol;
 
     //diffuse
-    float dotLN = clamp(dot(v_LightDir, vec3(v_Normal)), 0., 1.);
+    float dotLN = clamp(dot(v_LightDir, v_Normal), 0., 1.);
     vec3 diffuse = u_DiffuseCoeff * dotLN * u_DiffuseCol;
        
     //specular
-    float dotRV = clamp(dot(reflect(v_LightDir, vec3(v_Normal)), -v_ViewDir), 0., 1.);
+    float dotRV = clamp(dot(reflect(v_LightDir, v_Normal), -v_ViewDir), 0., 1.);
     float alpha = 1.;
     vec3 specular = u_SpecularCoeff * pow(dotRV, alpha) * u_SpecularCol;
 

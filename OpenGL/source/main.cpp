@@ -24,6 +24,7 @@
 #include "tests/Basic3D.h"
 #include "tests/ModelLoading.h"
 #include "tests/ModelInstancing.h"
+#include "tests/Grass.h"
 
 
 
@@ -79,6 +80,7 @@ int main(void)
         testMenu->RegisterTest<test::Basic3D>("Basic 3D");    // Add tests
         testMenu->RegisterTest<test::ModelLoading>("Model Loading");    // Add tests
         testMenu->RegisterTest<test::ModelInstancing>("Model Instancing");    // Add tests
+        testMenu->RegisterTest<test::Grass>("Grass");    // Add tests
 
 
 
@@ -93,7 +95,7 @@ int main(void)
 
             if (currentTest)
             {
-                currentTest->OnUpdate(0.0f);
+                currentTest->OnUpdate(1000.0f / ImGui::GetIO().Framerate);
                 currentTest->OnRender();
                 ImGui::Begin("Test");
                 if (currentTest != testMenu && ImGui::Button("<-"))
