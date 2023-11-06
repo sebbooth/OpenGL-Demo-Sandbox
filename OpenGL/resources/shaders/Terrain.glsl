@@ -20,7 +20,7 @@ void main()
     heightFloat = texColor.r;
 
     heightPos = position;
-    heightPos.y += 50. * heightFloat;
+    heightPos.y += 70. * heightFloat;
 
     gl_Position = u_MVP * vec4(heightPos,1);
 };

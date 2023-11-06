@@ -79,7 +79,7 @@ namespace test {
 			*/
 		
 		float gridSize = 1.0f;
-		int gridNum = 300;
+		int gridNum = 500;
 		TerrainGrid grid = TerrainGrid(gridNum, gridNum, gridSize);
 
 		m_PlaneVAO = std::make_unique<VertexArray>();
@@ -140,7 +140,7 @@ namespace test {
 
 
 		renderer.setClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-		renderer.DrawInstanced(*m_VAO, *m_IndexBuffer, *m_Shader, 300*300);
+		renderer.DrawInstanced(*m_VAO, *m_IndexBuffer, *m_Shader, 500*500);
 
 
 

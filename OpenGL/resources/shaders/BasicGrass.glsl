@@ -23,7 +23,7 @@ float rand(vec2 co) {
 
 void main()
 {
-    float gridWidth = 300.;
+    float gridWidth = 500.;
 
     v_TexCoord = texCoord;
     v_Position = position;
@@ -39,8 +39,8 @@ void main()
 
     vec3 instancePosition = position;
 
-    instancePosition.x += row - gridWidth/2 ;
-    instancePosition.z += column - gridWidth/2;
+    instancePosition.x += row - gridWidth/2 + randFloat;
+    instancePosition.z += column - gridWidth/2 + randFloat2;
 
     float height = texture(u_Texture, vec2(0.5, 0.5) + (instancePosition.xz/gridWidth)).r;
 
@@ -49,7 +49,7 @@ void main()
     instancePosition.x += instancePosition.y * 0.3 + instancePosition.y * 0.2 * sin((u_Time * randFloat) / 1000.);
     instancePosition.z += instancePosition.y * 0.2 * sin((u_Time * randFloat2) / 1000.);
    
-    instancePosition.y += 50 * height;
+    instancePosition.y += 70 * height;
 
     gl_Position = u_MVP * vec4(instancePosition, 1);
 };
