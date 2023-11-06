@@ -87,6 +87,12 @@
     <ClCompile Include="source\tests\Grass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\tests\HeightMapTerrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TerrainGrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\Basic.glsl" />
@@ -1436,6 +1442,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\tests\Grass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tests\HeightMapTerrain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TerrainGrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

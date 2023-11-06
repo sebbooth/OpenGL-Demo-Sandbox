@@ -25,13 +25,12 @@ bool GLLogCall(const char* function, const char* file, int line)
 void Renderer::Clear() const
 {
     GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-
 }
 
 void Renderer::setClearColor(float r, float g, float b, float a)
 {
     GLCall(glClearColor(r, g, b, a));
-    GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+    GLCall(glClear(GL_COLOR_BUFFER_BIT));
 }
 
 void Renderer::updateProj(GLFWwindow* window, glm::mat4& proj, int& width, int& height, float FOV, float min, float max)

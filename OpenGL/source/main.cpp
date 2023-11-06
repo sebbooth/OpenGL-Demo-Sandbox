@@ -25,6 +25,7 @@
 #include "tests/ModelLoading.h"
 #include "tests/ModelInstancing.h"
 #include "tests/Grass.h"
+#include "tests/HeightMapTerrain.h"
 
 
 
@@ -38,6 +39,9 @@ int main(void)
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+
+    glfwWindowHint(GLFW_SAMPLES, 3);
+
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     window = glfwCreateWindow(960, 540, "Hello World", NULL, NULL);
@@ -81,6 +85,7 @@ int main(void)
         testMenu->RegisterTest<test::ModelLoading>("Model Loading");    // Add tests
         testMenu->RegisterTest<test::ModelInstancing>("Model Instancing");    // Add tests
         testMenu->RegisterTest<test::Grass>("Grass");    // Add tests
+        testMenu->RegisterTest<test::HeightMapTerrain>("Basic Terrain");    // Add tests
 
 
 

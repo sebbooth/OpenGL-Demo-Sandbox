@@ -23,12 +23,19 @@ layout(location = 0) out vec4 color;
 
 in vec2 v_TexCoord;
 
-uniform vec4 u_Color;
-uniform sampler2D u_Texture;
+uniform vec4 u_PlaneColor;
+uniform float u_FogDist;
 
 void main()
 {
-    vec4 texColor = texture(u_Texture, v_TexCoord);
-    color = texColor + u_Color;
+    float fogFactor = (gl_FragCoord.z / gl_FragCoord.w)/ u_FogDist;
+    float fogFraction = max(0, (1 - fogFactor));
+    vec4 fogColor = vec4(1, 1, 1, 1);
+
+    color = u_PlaneColor;
+
+
+    color = (1 - fogFraction) * fogColor + fogFraction * color;
+
     //color = vec4(0, 0, 0, 1);
 };

@@ -28,6 +28,7 @@
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\tests\Basic3D.cpp" />
     <ClCompile Include="source\tests\Grass.cpp" />
+    <ClCompile Include="source\tests\HeightMapTerrain.cpp" />
     <ClCompile Include="source\tests\ModelInstancing.cpp" />
     <ClCompile Include="source\tests\ModelLoading.cpp" />
     <ClCompile Include="source\tests\Test.cpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="source\VertexArray.cpp" />
     <ClCompile Include="source\Texture.cpp" />
     <ClCompile Include="source\tests\TestClearColor.cpp" />
+    <ClCompile Include="source\TerrainGrid.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\Basic.glsl" />
@@ -194,6 +196,7 @@
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\tests\Basic3D.h" />
     <ClInclude Include="source\tests\Grass.h" />
+    <ClInclude Include="source\tests\HeightMapTerrain.h" />
     <ClInclude Include="source\tests\ModelInstancing.h" />
     <ClInclude Include="source\tests\ModelLoading.h" />
     <ClInclude Include="source\tests\Test.h" />
@@ -498,6 +501,7 @@
     <ClInclude Include="source\VertexBufferLayout.h" />
     <ClInclude Include="source\Texture.h" />
     <ClInclude Include="source\tests\TestClearColor.h" />
+    <ClInclude Include="source\TerrainGrid.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
