@@ -10,7 +10,6 @@ uniform mat4 u_MVP;
 uniform float u_GridSize;
 uniform float u_GridW;
 uniform float u_GridL;
-uniform float u_MaxHeight;
 uniform sampler2D u_Texture;
 
 void main()
@@ -21,7 +20,7 @@ void main()
     heightFloat = texColor.r;
 
     heightPos = position;
-    heightPos.y += u_MaxHeight * heightFloat;
+    heightPos.y += 70. * heightFloat;
 
     gl_Position = u_MVP * vec4(heightPos,1);
 };
@@ -41,6 +40,18 @@ uniform float u_FogDist;
 
 void main()
 {
-   color = vec4(u_Color.rgb * heightFloat, u_Color.a);
+    //color = vec4(1, 0, 0, 1);
+    //color = vec4(heightPos.y, heightPos.y, heightPos.y, 1);
+    //color = vec4(heightPos, 1);
+    //color = vec4(u_Color.rgb * heightFloat, u_Color.a);
+
+    float fogFactor = (gl_FragCoord.z / gl_FragCoord.w) / u_FogDist;
+    float fogFraction = max(0, (1 - fogFactor));
+    vec4 fogColor = vec4(1, 1, 1, 1);
+
+    color = u_Color;
+
+
+    color = (1 - fogFraction) * fogColor + fogFraction * color;
 };
 

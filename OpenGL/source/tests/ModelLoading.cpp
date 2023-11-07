@@ -10,8 +10,7 @@ namespace test {
 
 
 	ModelLoading::ModelLoading()
-		: m_Proj(glm::mat4(1.0f)), m_View(glm::mat4(1.0f)),
-		m_ViewTranslation(glm::vec3(0,0,-44))
+		: m_Proj(glm::mat4(1.0f)), m_View(glm::mat4(1.0f))
 	{
 		GLCall(glEnable(GL_DEPTH_TEST));
 		GLCall(glEnable(GL_BLEND));
@@ -36,7 +35,6 @@ namespace test {
 		m_Shader->Bind();
 		m_Shader->SetUniform1i("u_Texture", 0);
 
-		m_RotationY = 180.0f;
 		m_Proj = glm::perspective(glm::radians(45.0f), (float)m_Width / (float)m_Height, 0.1f, 100.0f);
 	}
 
@@ -46,6 +44,61 @@ namespace test {
 
 	void ModelLoading::OnUpdate(float deltaTime)
 	{
+		float moveSpeed = 0.05f;
+		float rotateSpeed = 0.0008f;
+
+		if (glfwGetKey(m_Window, GLFW_KEY_LEFT) == GLFW_PRESS)
+		{
+			glm::mat4 rotationMat(1);
+			rotationMat = glm::rotate(rotationMat, rotateSpeed * deltaTime, m_CamUp);
+			m_CamDir = glm::vec3(rotationMat * glm::vec4(m_CamDir, 1.0));
+		}
+
+		if (glfwGetKey(m_Window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+		{
+			glm::mat4 rotationMat(1);
+			rotationMat = glm::rotate(rotationMat, -rotateSpeed * deltaTime, m_CamUp);
+			m_CamDir = glm::vec3(rotationMat * glm::vec4(m_CamDir, 1.0));
+		}
+
+		if (glfwGetKey(m_Window, GLFW_KEY_UP) == GLFW_PRESS)
+		{
+			glm::mat4 rotationMat(1);
+			glm::vec3 camLeft = glm::cross(m_CamUp, m_CamDir);
+			rotationMat = glm::rotate(rotationMat, -rotateSpeed * deltaTime, camLeft);
+			m_CamDir = glm::vec3(rotationMat * glm::vec4(m_CamDir, 1.0));
+			m_CamUp = glm::vec3(rotationMat * glm::vec4(m_CamUp, 1.0));
+		}
+
+		if (glfwGetKey(m_Window, GLFW_KEY_DOWN) == GLFW_PRESS)
+		{
+			glm::mat4 rotationMat(1);
+			glm::vec3 camLeft = glm::cross(m_CamUp, m_CamDir);
+			rotationMat = glm::rotate(rotationMat, rotateSpeed * deltaTime, camLeft);
+			m_CamDir = glm::vec3(rotationMat * glm::vec4(m_CamDir, 1.0));
+			m_CamUp = glm::vec3(rotationMat * glm::vec4(m_CamUp, 1.0));
+		}
+
+		if (glfwGetKey(m_Window, GLFW_KEY_W) == GLFW_PRESS)
+			m_CamPos += deltaTime * moveSpeed * m_CamDir;
+		if (glfwGetKey(m_Window, GLFW_KEY_S) == GLFW_PRESS)
+			m_CamPos -= deltaTime * moveSpeed * m_CamDir;
+		if (glfwGetKey(m_Window, GLFW_KEY_R) == GLFW_PRESS)
+			m_CamPos += deltaTime * moveSpeed * m_CamUp;
+		if (glfwGetKey(m_Window, GLFW_KEY_F) == GLFW_PRESS)
+			m_CamPos -= deltaTime * moveSpeed * m_CamUp;
+
+		if (glfwGetKey(m_Window, GLFW_KEY_A) == GLFW_PRESS)
+		{
+			glm::vec3 camLeft = glm::cross(m_CamUp, m_CamDir);
+			m_CamPos += deltaTime * moveSpeed * camLeft;
+		}
+		if (glfwGetKey(m_Window, GLFW_KEY_D) == GLFW_PRESS)
+		{
+			glm::vec3 camRight = glm::cross(m_CamDir, m_CamUp);
+			m_CamPos += deltaTime * moveSpeed * camRight;
+		}
+		m_View = glm::lookAt(m_CamPos, m_CamPos + m_CamDir, m_CamUp);
 	}
 
 	void ModelLoading::OnRender()
@@ -58,16 +111,14 @@ namespace test {
 		
 		m_Texture->Bind();
 
-		m_View = glm::translate(glm::mat4(1.0f), m_ViewTranslation);
 		m_ModelMat = glm::rotate(glm::mat4(1.0f), glm::radians(m_RotationY), glm::vec3(0.0f, 1.0f, 0.0f));
 		m_ModelMat = glm::rotate(m_ModelMat, glm::radians(m_RotationX), glm::vec3(1.0f, 0.0f, 0.0f));
-		m_ModelMat = glm::translate(m_ModelMat, m_ModelTranslation);
 		glm::mat4 mvp = m_Proj * m_View * m_ModelMat;
 
 		m_Shader->Bind();
 		m_Shader->SetUniformMat4f("u_MVP", mvp);
 		m_Shader->SetUniformMat4f("u_Mod", m_ModelMat);
-		m_Shader->SetUniformVec3("u_ViewPos", m_ViewTranslation);
+		m_Shader->SetUniformVec3("u_ViewPos", m_CamPos);
 		m_Shader->SetUniformVec3("u_LightPos", m_LightPos);
 
 		m_Shader->SetUniform1f("u_AmbientCoeff", m_AmbientCoeff);
@@ -76,26 +127,18 @@ namespace test {
 		m_Shader->SetUniform3f("u_AmbientCol", m_AmbientCol[0], m_AmbientCol[1], m_AmbientCol[2]);
 		m_Shader->SetUniform3f("u_DiffuseCol", m_DiffuseCol[0], m_DiffuseCol[1], m_DiffuseCol[2]);
 		m_Shader->SetUniform3f("u_SpecularCol", m_SpecularCol[0], m_SpecularCol[1], m_SpecularCol[2]);
-		m_Shader->SetUniform4f("u_ModelCol", m_ModelCol[0], m_ModelCol[1], m_ModelCol[2], m_ModelCol[3]);
 
 		renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
 	}
 
 	void ModelLoading::OnImGuiRender()
 	{
-		ImGui::SliderFloat3("View", &m_ViewTranslation.x, -100.0f, 100.0f);
-		ImGui::SliderFloat3("Model A", &m_ModelTranslation.x, -10.0f, 10.0f);
 		ImGui::SliderFloat("Rotate abt Y", &m_RotationY, -200.0f, 200.0f);
 		ImGui::SliderFloat("Rotate abt X", &m_RotationX, -200.0f, 200.0f);
-
-		ImGui::ColorEdit4("Obj Color", m_ModelCol);
-
-		ImGui::SliderFloat3("Light Pos", &m_LightPos.x, -50.0f, 50.0f);
-
+		ImGui::SliderFloat3("Light Pos", &m_LightPos.x, -100.0f, 100.0f);
 		ImGui::SliderFloat("Ambient Light", &m_AmbientCoeff, 0.0f, 2.0f);
 		ImGui::SliderFloat("Diffuse Light", &m_DiffuseCoeff, 0.0f, 2.0f);
 		ImGui::SliderFloat("Specular Light", &m_SpecularCoeff, 0.0f, 2.0f);
-
 		ImGui::ColorEdit3("Ambient Color", m_AmbientCol);
 		ImGui::ColorEdit3("Diffuse Color", m_DiffuseCol);
 		ImGui::ColorEdit3("Specular Color", m_SpecularCol);

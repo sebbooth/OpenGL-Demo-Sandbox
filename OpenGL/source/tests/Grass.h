@@ -42,13 +42,17 @@ namespace test {
 
 		float m_RotationY, m_RotationX;
 		float m_Time = 0;
-		float m_FogDist = 400.0f;
+		float m_FogDist = 375.0f;
+		int m_GridNum = 300 * 300;
 
 		glm::mat4 m_Proj, m_View, m_ModelMat;
-		glm::vec3 m_ViewTranslation, m_ModelTranslation;
 
 		float m_ModelCol[4] = { 0.0f, 0.8f, 0.0f, 1.0f };
-		float m_PlaneCol[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
+		float m_PlaneCol[4] = { 0.0f, 0.05f, 0.0f, 1.0f };
+
+		glm::vec3 m_CamDir = glm::vec3(0, 0, 1);
+		glm::vec3 m_CamPos = glm::vec3(0, 30, -150);	// decent spawn point
+		glm::vec3 m_CamUp = glm::vec3(0, 1, 0);
 	};
 }
 

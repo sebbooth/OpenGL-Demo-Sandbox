@@ -37,9 +37,11 @@ namespace test {
 		float m_RotationY, m_RotationX;
 
 		glm::mat4 m_Proj, m_View, m_ModelMat;
-		glm::vec3 m_ViewTranslation, m_ModelTranslation;
 
-		glm::vec3 m_LightPos = glm::vec3(0, 0, 40);
+		glm::vec3 m_CamDir = glm::vec3(0, 0, 1);
+		glm::vec3 m_CamPos = glm::vec3(0, 0, -50);	// decent spawn point
+		glm::vec3 m_CamUp = glm::vec3(0, 1, 0);
+		glm::vec3 m_LightPos = glm::vec3(50, 0, -50);
 
 		float m_AmbientCoeff = 0.5f;
 		float m_DiffuseCoeff = 0.5f;

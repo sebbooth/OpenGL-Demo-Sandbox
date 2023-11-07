@@ -37,7 +37,6 @@ in vec3 v_Normal;
 in vec3 v_LightDir;
 in vec3 v_ViewDir;
 
-uniform vec4 u_ModelCol;
 uniform vec3 u_ViewPos;
 uniform sampler2D u_Texture;
 
@@ -60,7 +59,7 @@ void main()
     vec3 ambient = u_AmbientCoeff * u_AmbientCol;
 
     //diffuse
-    float dotLN = clamp(dot(v_LightDir, v_Normal), 0., 1.);
+    float dotLN = clamp(dot(v_LightDir, -v_Normal), 0., 1.);
     vec3 diffuse = u_DiffuseCoeff * dotLN * u_DiffuseCol;
        
     //specular

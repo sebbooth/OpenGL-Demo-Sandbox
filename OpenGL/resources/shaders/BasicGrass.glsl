@@ -12,9 +12,8 @@ out float randFloat;
 out float randFloat2;
 
 uniform mat4 u_MVP;
-uniform mat4 u_Mod;
-uniform vec3 u_ViewPos;
 uniform float u_Time;
+uniform float u_GridNum;
 uniform sampler2D u_Texture;
 
 float rand(vec2 co) {
@@ -23,7 +22,8 @@ float rand(vec2 co) {
 
 void main()
 {
-    float gridWidth = 500.;
+    float gridLength = 300.;
+    float gridWidth = gridLength / u_GridNum;
 
     v_TexCoord = texCoord;
     v_Position = position;
@@ -31,18 +31,18 @@ void main()
     randFloat = rand(vec2(gl_InstanceID, gl_InstanceID));
     randFloat2 = rand(vec2(randFloat, gl_InstanceID));
 
-    float column = floor(gl_InstanceID / gridWidth);
-    float row = gl_InstanceID - (gridWidth * column);
+    float column = floor(gl_InstanceID / u_GridNum);
+    float row = gl_InstanceID - (u_GridNum * column);
 
 
 
 
     vec3 instancePosition = position;
 
-    instancePosition.x += row - gridWidth/2 + randFloat;
-    instancePosition.z += column - gridWidth/2 + randFloat2;
+    instancePosition.x += row * gridWidth - gridLength / 2 + randFloat;
+    instancePosition.z += column * gridWidth - gridLength /2 + randFloat2;
 
-    float height = texture(u_Texture, vec2(0.5, 0.5) + (instancePosition.xz/gridWidth)).r;
+    float height = texture(u_Texture, vec2(0.5, 0.5) + (instancePosition.xz/ gridLength)).r;
 
     instancePosition.y += 5;
 
@@ -68,7 +68,6 @@ in float randFloat;
 in float randFloat2;
 
 uniform vec4 u_ModelCol;
-uniform vec3 u_ViewPos;
 uniform float u_FogDist;
 
 void main()
