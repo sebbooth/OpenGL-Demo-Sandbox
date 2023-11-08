@@ -18,7 +18,6 @@ namespace test {
 		GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 		glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
 
-
 		float gridSize = 1.0f;
 		int gridNum = 300;
 		TerrainGrid grid = TerrainGrid(gridNum, gridNum, gridSize);
@@ -49,6 +48,7 @@ namespace test {
 
 	HeightMapTerrain::~HeightMapTerrain() 
 	{
+		GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 	}
 
 	void HeightMapTerrain::OnUpdate(float deltaTime)
@@ -112,11 +112,19 @@ namespace test {
 
 	void HeightMapTerrain::OnRender()
 	{
+		if (m_Wireframe)
+		{
+			GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
+		}
+		else
+		{
+			GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
+		}
 
 		Renderer renderer;
 
 		renderer.updateProj(m_Window, m_Proj, m_Width, m_Height, 45.0f, 0.1f, 10000.0f);
-		renderer.setClearColor(0.1f, 0.1f, 0.3f, 1.0f);
+		renderer.setClearColor(0.1f, 0.1f, 0.8f, 1.0f);
 		renderer.Clear();
 		
 		m_Texture->Bind();
@@ -140,5 +148,6 @@ namespace test {
 		ImGui::SliderFloat("Rotate abt X", &m_RotationX, -200.0f, 200.0f);
 		ImGui::SliderFloat("Terrain Height", &m_MaxHeight, -200.0f, 200.0f);
 		ImGui::ColorEdit4("Color", m_Color);
+		ImGui::Checkbox("Wireframe", &m_Wireframe);
 	}
 }

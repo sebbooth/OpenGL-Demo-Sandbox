@@ -40,6 +40,7 @@ namespace test {
 
 	ModelLoading::~ModelLoading()
 	{
+		GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 	}
 
 	void ModelLoading::OnUpdate(float deltaTime)
@@ -103,6 +104,14 @@ namespace test {
 
 	void ModelLoading::OnRender()
 	{
+		if (m_Wireframe)
+		{
+			GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
+		}
+		else
+		{
+			GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
+		}
 
 		Renderer renderer;
 		
@@ -135,6 +144,7 @@ namespace test {
 	{
 		ImGui::SliderFloat("Rotate abt Y", &m_RotationY, -200.0f, 200.0f);
 		ImGui::SliderFloat("Rotate abt X", &m_RotationX, -200.0f, 200.0f);
+		ImGui::Checkbox("Wireframe", &m_Wireframe);
 		ImGui::SliderFloat3("Light Pos", &m_LightPos.x, -100.0f, 100.0f);
 		ImGui::SliderFloat("Ambient Light", &m_AmbientCoeff, 0.0f, 2.0f);
 		ImGui::SliderFloat("Diffuse Light", &m_DiffuseCoeff, 0.0f, 2.0f);

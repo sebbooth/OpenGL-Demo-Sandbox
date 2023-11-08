@@ -43,6 +43,8 @@ namespace test {
 		glm::vec3 m_CamUp = glm::vec3(0, 1, 0);
 		glm::vec3 m_LightPos = glm::vec3(50, 0, -50);
 
+		bool m_Wireframe = false;
+
 		float m_AmbientCoeff = 0.5f;
 		float m_DiffuseCoeff = 0.5f;
 		float m_SpecularCoeff = 0.5f;

@@ -34,8 +34,14 @@ namespace test {
 		float m_RotationY, m_RotationX;
 		float m_Color[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 
+		bool m_Wireframe = false;
+
 		glm::mat4 m_Model, m_View, m_Proj;
-		glm::vec3 m_ViewTranslation, m_ModelTranslationA, m_ModelTranslationB;
+		glm::vec3 m_ModelTranslationA, m_ModelTranslationB;
+
+		glm::vec3 m_CamDir = glm::vec3(0, 0, 1);
+		glm::vec3 m_CamPos = glm::vec3(0, 0, -10);	// decent spawn point
+		glm::vec3 m_CamUp = glm::vec3(0, 1, 0);
 	};
 }
 

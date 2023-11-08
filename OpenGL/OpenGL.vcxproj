@@ -25,7 +25,7 @@
     <ClCompile Include="source\Shader.cpp" />
     <ClCompile Include="source\IndexBuffer.cpp" />
     <ClCompile Include="source\Renderer.cpp" />
-    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\Main.cpp" />
     <ClCompile Include="source\tests\Basic3D.cpp" />
     <ClCompile Include="source\tests\Grass.cpp" />
     <ClCompile Include="source\tests\HeightMapTerrain.cpp" />

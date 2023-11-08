@@ -84,11 +84,8 @@ int main(void)
         testMenu->RegisterTest<test::Basic3D>("Basic 3D");    // Add tests
         testMenu->RegisterTest<test::ModelLoading>("Model Loading");    // Add tests
         testMenu->RegisterTest<test::ModelInstancing>("Model Instancing");    // Add tests
-        testMenu->RegisterTest<test::Grass>("Grass");    // Add tests
         testMenu->RegisterTest<test::HeightMapTerrain>("Basic Terrain");    // Add tests
-
-
-
+        testMenu->RegisterTest<test::Grass>("Grass");    // Add tests
 
 
         while (!glfwWindowShouldClose(window))

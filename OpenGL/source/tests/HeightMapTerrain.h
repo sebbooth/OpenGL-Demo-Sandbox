@@ -29,11 +29,14 @@ namespace test {
 		std::unique_ptr<Texture> m_Texture;
 
 		GLFWwindow* m_Window = glfwGetCurrentContext();
+
 		int m_Width, m_Height;
 
 		float m_RotationY, m_RotationX;
 		float m_MaxHeight = 70.;
 		float m_Color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+		bool m_Wireframe = false;
 
 		glm::mat4 m_Model, m_View, m_Proj;
 

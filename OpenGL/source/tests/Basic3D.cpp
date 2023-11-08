@@ -9,8 +9,8 @@
 namespace test {
 	Basic3D::Basic3D()
 		: m_Model(glm::mat4(1.0f)), m_View(glm::mat4(1.0f)), m_Proj(glm::mat4(1.0f)),
-		m_ViewTranslation(glm::vec3(0,0,-10)), 
-		m_ModelTranslationA(glm::vec3(-2, 0, 0)), m_ModelTranslationB(glm::vec3(2, 0, 0))
+		m_ModelTranslationA(glm::vec3(-2, 0, 0)), 
+		m_ModelTranslationB(glm::vec3(2, 0, 0))
 	{
 		float positions[] = {
 			//  x,     y,     z,   tex.x, tex.y,
@@ -78,14 +78,78 @@ namespace test {
 
 	Basic3D::~Basic3D()
 	{
+		GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 	}
 
 	void Basic3D::OnUpdate(float deltaTime)
 	{
+		float moveSpeed = 0.005f;
+		float rotateSpeed = 0.0008f;
+
+		if (glfwGetKey(m_Window, GLFW_KEY_LEFT) == GLFW_PRESS)
+		{
+			glm::mat4 rotationMat(1);
+			rotationMat = glm::rotate(rotationMat, rotateSpeed * deltaTime, m_CamUp);
+			m_CamDir = glm::vec3(rotationMat * glm::vec4(m_CamDir, 1.0));
+		}
+
+		if (glfwGetKey(m_Window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+		{
+			glm::mat4 rotationMat(1);
+			rotationMat = glm::rotate(rotationMat, -rotateSpeed * deltaTime, m_CamUp);
+			m_CamDir = glm::vec3(rotationMat * glm::vec4(m_CamDir, 1.0));
+		}
+
+		if (glfwGetKey(m_Window, GLFW_KEY_UP) == GLFW_PRESS)
+		{
+			glm::mat4 rotationMat(1);
+			glm::vec3 camLeft = glm::cross(m_CamUp, m_CamDir);
+			rotationMat = glm::rotate(rotationMat, -rotateSpeed * deltaTime, camLeft);
+			m_CamDir = glm::vec3(rotationMat * glm::vec4(m_CamDir, 1.0));
+			m_CamUp = glm::vec3(rotationMat * glm::vec4(m_CamUp, 1.0));
+		}
+
+		if (glfwGetKey(m_Window, GLFW_KEY_DOWN) == GLFW_PRESS)
+		{
+			glm::mat4 rotationMat(1);
+			glm::vec3 camLeft = glm::cross(m_CamUp, m_CamDir);
+			rotationMat = glm::rotate(rotationMat, rotateSpeed * deltaTime, camLeft);
+			m_CamDir = glm::vec3(rotationMat * glm::vec4(m_CamDir, 1.0));
+			m_CamUp = glm::vec3(rotationMat * glm::vec4(m_CamUp, 1.0));
+		}
+
+		if (glfwGetKey(m_Window, GLFW_KEY_W) == GLFW_PRESS)
+			m_CamPos += deltaTime * moveSpeed * m_CamDir;
+		if (glfwGetKey(m_Window, GLFW_KEY_S) == GLFW_PRESS)
+			m_CamPos -= deltaTime * moveSpeed * m_CamDir;
+		if (glfwGetKey(m_Window, GLFW_KEY_R) == GLFW_PRESS)
+			m_CamPos += deltaTime * moveSpeed * m_CamUp;
+		if (glfwGetKey(m_Window, GLFW_KEY_F) == GLFW_PRESS)
+			m_CamPos -= deltaTime * moveSpeed * m_CamUp;
+
+		if (glfwGetKey(m_Window, GLFW_KEY_A) == GLFW_PRESS)
+		{
+			glm::vec3 camLeft = glm::cross(m_CamUp, m_CamDir);
+			m_CamPos += deltaTime * moveSpeed * camLeft;
+		}
+		if (glfwGetKey(m_Window, GLFW_KEY_D) == GLFW_PRESS)
+		{
+			glm::vec3 camRight = glm::cross(m_CamDir, m_CamUp);
+			m_CamPos += deltaTime * moveSpeed * camRight;
+		}
+		m_View = glm::lookAt(m_CamPos, m_CamPos + m_CamDir, m_CamUp);
 	}
 
 	void Basic3D::OnRender()
 	{
+		if (m_Wireframe)
+		{
+			GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
+		}
+		else
+		{
+			GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
+		}
 
 		Renderer renderer;
 
@@ -94,7 +158,6 @@ namespace test {
 
 		m_Texture->Bind();
 
-		m_View = glm::translate(glm::mat4(1.0f), m_ViewTranslation);
 		{
 			m_Model = glm::rotate(glm::mat4(1.0f), glm::radians(m_RotationY), glm::vec3(0.0f, 1.0f, 0.0f));
 			m_Model = glm::rotate(m_Model, glm::radians(m_RotationX), glm::vec3(1.0f, 0.0f, 0.0f));
@@ -121,13 +184,12 @@ namespace test {
 	void Basic3D::OnImGuiRender()
 	{
 
-		ImGui::SliderFloat3("View", &m_ViewTranslation.x, -10.0f, 10.0f);
+		ImGui::SliderFloat3("View", &m_CamPos.x, -10.0f, 10.0f);
 		ImGui::SliderFloat3("Model A", &m_ModelTranslationA.x, -10.0f, 10.0f);
 		ImGui::SliderFloat3("Model B", &m_ModelTranslationB.x, -10.0f, 10.0f);
 		ImGui::SliderFloat("Rotate abt Y", &m_RotationY, -200.0f, 200.0f);
 		ImGui::SliderFloat("Rotate abt X", &m_RotationX, -200.0f, 200.0f);
 		ImGui::ColorEdit4("Color B", m_Color);
-
-
+		ImGui::Checkbox("Wireframe", &m_Wireframe);
 	}
 }
