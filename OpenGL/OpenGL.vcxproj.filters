@@ -1405,19 +1405,19 @@
     <ClInclude Include="source\vendor\imgui\imgui_impl_glfw_gl3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\tests\Test.h">
+    <ClInclude Include="source\tests\include\Test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\tests\TestClearColor.h">
+    <ClInclude Include="source\tests\include\TestClearColor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\tests\TestTexture2D.h">
+    <ClInclude Include="source\tests\include\TestTexture2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\tests\TestTexture2DBatch.h">
+    <ClInclude Include="source\tests\include\TestTexture2DBatch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\tests\Basic3D.h">
+    <ClInclude Include="source\tests\include\Basic3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\vendor\json\json.hpp">
@@ -1426,19 +1426,19 @@
     <ClInclude Include="source\include\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\tests\ModelLoading.h">
+    <ClInclude Include="source\tests\include\ModelLoading.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\include\OBJLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\tests\ModelInstancing.h">
+    <ClInclude Include="source\tests\include\ModelInstancing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\tests\Grass.h">
+    <ClInclude Include="source\tests\include\Grass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\tests\HeightMapTerrain.h">
+    <ClInclude Include="source\tests\include\HeightMapTerrain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\include\TerrainGrid.h">

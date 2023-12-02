@@ -18,14 +18,14 @@
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw_gl3.h"
 
-#include "tests/TestClearColor.h"
-#include "tests/TestTexture2D.h"
-#include "tests/TestTexture2DBatch.h"
-#include "tests/Basic3D.h"
-#include "tests/ModelLoading.h"
-#include "tests/ModelInstancing.h"
-#include "tests/Grass.h"
-#include "tests/HeightMapTerrain.h"
+#include "tests/include/TestClearColor.h"
+#include "tests/include/TestTexture2D.h"
+#include "tests/include/TestTexture2DBatch.h"
+#include "tests/include/Basic3D.h"
+#include "tests/include/ModelLoading.h"
+#include "tests/include/ModelInstancing.h"
+#include "tests/include/Grass.h"
+#include "tests/include/HeightMapTerrain.h"
 
 
 

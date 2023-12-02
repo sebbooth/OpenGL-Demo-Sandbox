@@ -192,14 +192,14 @@
     <ClInclude Include="source\include\Shader.h" />
     <ClInclude Include="source\include\IndexBuffer.h" />
     <ClInclude Include="source\include\Renderer.h" />
-    <ClInclude Include="source\tests\Basic3D.h" />
-    <ClInclude Include="source\tests\Grass.h" />
-    <ClInclude Include="source\tests\HeightMapTerrain.h" />
-    <ClInclude Include="source\tests\ModelInstancing.h" />
-    <ClInclude Include="source\tests\ModelLoading.h" />
-    <ClInclude Include="source\tests\Test.h" />
-    <ClInclude Include="source\tests\TestTexture2D.h" />
-    <ClInclude Include="source\tests\TestTexture2DBatch.h" />
+    <ClInclude Include="source\tests\include\Basic3D.h" />
+    <ClInclude Include="source\tests\include\Grass.h" />
+    <ClInclude Include="source\tests\include\HeightMapTerrain.h" />
+    <ClInclude Include="source\tests\include\ModelInstancing.h" />
+    <ClInclude Include="source\tests\include\ModelLoading.h" />
+    <ClInclude Include="source\tests\include\Test.h" />
+    <ClInclude Include="source\tests\include\TestTexture2D.h" />
+    <ClInclude Include="source\tests\include\TestTexture2DBatch.h" />
     <ClInclude Include="source\vendor\glm\common.hpp" />
     <ClInclude Include="source\vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="source\vendor\glm\detail\compute_vector_relational.hpp" />
@@ -498,7 +498,7 @@
     <ClInclude Include="source\include\VertexArray.h" />
     <ClInclude Include="source\include\VertexBufferLayout.h" />
     <ClInclude Include="source\include\Texture.h" />
-    <ClInclude Include="source\tests\TestClearColor.h" />
+    <ClInclude Include="source\tests\include\TestClearColor.h" />
     <ClInclude Include="source\include\TerrainGrid.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
