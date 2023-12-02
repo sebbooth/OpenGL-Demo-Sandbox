@@ -69,9 +69,6 @@
     <ClCompile Include="source\tests\Basic3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\GLTFLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -508,28 +505,28 @@
     <None Include="resources\shaders\BasicModel.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\Renderer.h">
+    <ClInclude Include="source\include\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\VertexBuffer.h">
+    <ClInclude Include="source\include\VertexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\IndexBuffer.h">
+    <ClInclude Include="source\include\IndexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\VertexArray.h">
+    <ClInclude Include="source\include\VertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\VertexBufferLayout.h">
+    <ClInclude Include="source\include\VertexBufferLayout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\Shader.h">
+    <ClInclude Include="source\include\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\vendor\stb_image\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\Texture.h">
+    <ClInclude Include="source\include\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\vendor\glm\detail\_features.hpp">
@@ -1426,16 +1423,13 @@
     <ClInclude Include="source\vendor\json\json.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\GLTFLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Mesh.h">
+    <ClInclude Include="source\include\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\tests\ModelLoading.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\OBJLoader.h">
+    <ClInclude Include="source\include\OBJLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\tests\ModelInstancing.h">
@@ -1447,7 +1441,7 @@
     <ClInclude Include="source\tests\HeightMapTerrain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\TerrainGrid.h">
+    <ClInclude Include="source\include\TerrainGrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
