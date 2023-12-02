@@ -21,7 +21,7 @@ namespace test {
 
 		glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
 
-		m_Model = std::make_unique<OBJLoader>("resources/models/obj/grassBlade/grassBlade.obj");
+		m_Model = std::make_unique<OBJLoader>("resources/models/objs/grassBlade/grassBlade.obj");
 		m_Texture = std::make_unique<Texture>("resources/textures/heightmap1.png");
 
 		m_VAO = std::make_unique<VertexArray>();

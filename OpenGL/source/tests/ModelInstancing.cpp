@@ -19,8 +19,8 @@ namespace test {
 		GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 		glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
 
-		m_Model = std::make_unique<OBJLoader>("resources/models/obj/goblin/goblin.obj");
-		m_Texture = std::make_unique<Texture>("resources/models/obj/goblin/Face_diffuse.jpeg");
+		m_Model = std::make_unique<OBJLoader>("resources/models/objs/goblin/goblin.obj");
+		m_Texture = std::make_unique<Texture>("resources/models/objs/goblin/Face_diffuse.jpeg");
 
 		m_VAO = std::make_unique<VertexArray>();
 		m_VertexBuffer = std::make_unique<VertexBuffer>(m_Model->m_Vertices.data(), m_Model->m_Vertices.size() * sizeof(float) * 8);
